@@ -99,7 +99,7 @@ class GeometricOperation:
      def cizgiOrtaNokta(p1:Point,p2:Point) -> Point:
           "iki nokta arası orta noktayi bulmak icin fonksiyon"
           x=(p1.X+p2.X)/2
-          y=(p1.X+p2.Y)/2
+          y=(p1.Y+p2.Y)/2
           ortaNokta=Point(x,y)
           return ortaNokta
 
