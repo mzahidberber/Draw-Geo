@@ -2,7 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from geooperation_api.models import Point
-from geooperation_api.serializer import PointSerializer,SlopeSerializer,DegreeSerializer,RadiansSerializer
+from geooperation_api.serializer import PointSerializer,SlopeSerializer,DegreeSerializer,PointAndListSerializer,RadiansSerializer
 from geooperation_api.geometric.GeometricOperations import GeometricOperation
 from abc import ABC,abstractmethod
 
@@ -15,6 +15,7 @@ class BaseView(APIView,ABC):
     degreeSeralizer=DegreeSerializer
     radianSerializer=RadiansSerializer
     geometricOperation=GeometricOperation
+    pointAndListSerializer=PointAndListSerializer
 
     @abstractmethod
     def geo(self,data):pass

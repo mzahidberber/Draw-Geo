@@ -6,6 +6,7 @@ from geooperation_api.views import FindCenterPointToLine,FindDegreeToBetweenTwoL
 from geooperation_api.views import FindDotProductToTwoPoints,FindDifferenceTwoPoints
 from geooperation_api.views import WherePointsOnLine,FindInsectionPointToTwoLines
 from geooperation_api.views import FindPointLength,WherePointZone
+from geooperation_api.views import FindNearetPoint
 
 
 urlpatterns=[
@@ -26,4 +27,5 @@ urlpatterns=[
     path('findInsectionPointToTwoLines/',FindInsectionPointToTwoLines.as_view()),
     path('findPointLength/',FindPointLength.as_view()),
     path('wherePointZone/',WherePointZone.as_view()),
+    path('findNearetPoint/',FindNearetPoint.as_view()),
 ]

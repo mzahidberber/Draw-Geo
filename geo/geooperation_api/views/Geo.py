@@ -21,6 +21,7 @@ class Geo(BaseView):
         findInsectionPointToTwoLines (point,point,point,point)   -> point
         findPointLength              (point,point,length:float)  -> point
         wherePointZone               (point,point)               -> zone:int
+        findNearetPoint              (point,points:list[point])  -> point
     """
     def geo(self,data):pass
     

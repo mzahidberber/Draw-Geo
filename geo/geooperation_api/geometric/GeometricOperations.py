@@ -262,3 +262,15 @@ class GeometricOperation:
                #üzerinde
                return 5
           
+     
+
+     @staticmethod
+     def enyakinNoktayiBul(p:Point,pointList:list[Point]) -> Point:
+          liste=list(map(lambda x:GeometricOperation.cizgiUzunlukBul(p,x),pointList))
+          return pointList[liste.index(min(liste))]
+     
+
+     
+
+     
+          
