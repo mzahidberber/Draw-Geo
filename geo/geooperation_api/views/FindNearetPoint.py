@@ -9,7 +9,6 @@ class FindNearetPoint(BaseView):
     '''
     
     def geo(self,data):
-        print(data)
         result= self.geometricOperation.enyakinNoktayiBul(
             self.point(pointDict=dict(data["point"])),
             list(map(lambda x :self.point(pointDict=dict(x)),data["points"])))
