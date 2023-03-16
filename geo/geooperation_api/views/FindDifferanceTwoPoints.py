@@ -1,3 +1,4 @@
+from geooperation_api.models import Response
 from .BaseView import BaseView
 class FindDifferenceTwoPoints(BaseView):
     '''
@@ -11,7 +12,7 @@ class FindDifferenceTwoPoints(BaseView):
         result= self.geometricOperation.IkıNoktaninFarki(
             self.point(pointDict=dict(data[0])),
             self.point(pointDict=dict(data[1])))
-        return self.response(result.to_Dict())
+        return self.response(Response.SuccessData([result.to_Dict()],200))
     
     def post(self, request, format=None):
         serializer=self.pointSerializer(data=request.data,many=True)

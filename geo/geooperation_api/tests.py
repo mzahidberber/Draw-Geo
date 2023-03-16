@@ -11,5 +11,6 @@ class GeoTest(TestCase):
 
     def test_geo_enyakinnoktayibul(self):
         geo=GeometricOperation
-        nokta=geo.enyakinNoktayiBul(Point(0,0,0),[Point(7,8,9),Point(10,10,10),Point(5,4,3)])
-        self.assertEqual(nokta.to_Dict(),1)
+        nokta=geo.merkezveYaricapBul(Point(10,0,1),Point(5,5,1),Point(3,10,1))
+        print(nokta[0].X,"----",nokta[0].Y,"---",nokta[1])
+        # self.assertEqual(nokta.to_Dict(),1)

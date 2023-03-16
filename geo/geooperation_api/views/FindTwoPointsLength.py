@@ -1,3 +1,5 @@
+
+from geooperation_api.models.Response import Response
 from .BaseView import BaseView
 
 class FindTwoPointsLength(BaseView):
@@ -12,7 +14,7 @@ class FindTwoPointsLength(BaseView):
         result= self.geometricOperation.cizgiUzunlukBul(
             self.point(pointDict=dict(data[0])),
             self.point(pointDict=dict(data[1])))
-        return self.response({"length":result})
+        return self.response(Response.SuccessData([{"length":result}],200))
     
     
     def post(self, request, format=None):

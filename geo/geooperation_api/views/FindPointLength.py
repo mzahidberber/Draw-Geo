@@ -1,4 +1,5 @@
 from .BaseView import BaseView
+from geooperation_api.models.Response import Response
 class FindPointLength(BaseView):
     '''
     put two points and length return point
@@ -11,7 +12,7 @@ class FindPointLength(BaseView):
         result= self.geometricOperation.uzunluktakiNoktayiBul(
             self.point(pointDict=dict(data[0])),
             self.point(pointDict=dict(data[1])),length)
-        return self.response(result.to_Dict())
+        return self.response(Response.SuccessData([result.to_Dict()],200))
     
     def post(self, request, format=None):
         serializer=self.pointSerializer(data=request.data,many=True)
