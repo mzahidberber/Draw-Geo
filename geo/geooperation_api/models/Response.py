@@ -1,19 +1,17 @@
 
 class Response:
     
+    
     @staticmethod
-    def SuccessData(data:list[dict],statusCode:int) -> dict:
-        return {"data":data,"statusCode":statusCode,"errors":{}}
+    def SuccessData(data,statusCode:int) -> dict:
+        return {"data":data,"statusCode":statusCode,"errors":None}
     
     @staticmethod
     def SuccessCode(statusCode:int) -> dict:
-        return {"data":{},"statusCode":statusCode,"errors":{}}
+        return {"data":None,"statusCode":statusCode,"errors":None}
+    
     
     @staticmethod
-    def FailErrors(errors:list[str],statusCode:int) -> dict:
-        return {"data":{},"statusCode":statusCode,"errors":errors}
-    
-    @staticmethod
-    def FailError(errorMessage:str,statusCode:int)-> dict:
-        return {"data":{},"statusCode":statusCode,"errors":errorMessage}
+    def FailError(errors:str or list[str],statusCode:int)-> dict:
+        return {"data":None,"statusCode":statusCode,"errors":errors}
     

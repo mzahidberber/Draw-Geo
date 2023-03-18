@@ -1,5 +1,6 @@
-from geooperation_api.models import Response
 from .BaseView import BaseView
+from geooperation_api.models.Response import Response
+from django.http import JsonResponse
 class FindDifferenceTwoPoints(BaseView):
     '''
     put two points and return difference points
@@ -12,11 +13,11 @@ class FindDifferenceTwoPoints(BaseView):
         result= self.geometricOperation.IkıNoktaninFarki(
             self.point(pointDict=dict(data[0])),
             self.point(pointDict=dict(data[1])))
-        return self.response(Response.SuccessData([result.to_Dict()],200))
+        return JsonResponse(Response.SuccessData(result.to_Dict(),200),status=200)
     
     def post(self, request, format=None):
         serializer=self.pointSerializer(data=request.data,many=True)
         if serializer.is_valid():
             return self.geo(serializer.data)
         else:
-            return self.response(serializer.errors,status=self.status.HTTP_400_BAD_REQUEST)
+            return JsonResponse(Response.FailError(serializer.errors,400),status=400)

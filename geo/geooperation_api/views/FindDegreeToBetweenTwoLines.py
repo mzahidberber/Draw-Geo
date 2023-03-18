@@ -1,5 +1,6 @@
 from .BaseView import BaseView
-
+from geooperation_api.models.Response import Response
+from django.http import JsonResponse
 class FindDegreeToBetweenTwoLines(BaseView):
     '''
     put two slopes and return degree to between two line 
@@ -10,11 +11,11 @@ class FindDegreeToBetweenTwoLines(BaseView):
     @BaseView.validationTwoData
     def geo(self,data):
         result= self.geometricOperation.ikiDogruArasiAciBulma(data[0]["slope"],data[1]["slope"])
-        return self.response({"degree":result})
+        return JsonResponse(Response.SuccessData(result,200),status=200)
     
     def post(self, request, format=None):
         serializer=self.slopeSerializer(data=request.data,many=True)
         if serializer.is_valid():
             return self.geo(serializer.data)
         else:
-            return self.response(serializer.errors,status=self.status.HTTP_400_BAD_REQUEST)
+            return JsonResponse(Response.FailError(serializer.errors,400),status=400)

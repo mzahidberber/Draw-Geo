@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'geooperation_api',
     'rest_framework',
+    #'adrf',
 ]
 
 MIDDLEWARE = [

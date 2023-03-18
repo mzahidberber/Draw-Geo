@@ -1,5 +1,6 @@
 from .BaseView import BaseView
-
+from geooperation_api.models.Response import Response
+from django.http import JsonResponse
 class FindInsectionPointToTwoLines(BaseView):
     '''
     put four points and return lines intersection point
@@ -14,11 +15,11 @@ class FindInsectionPointToTwoLines(BaseView):
             self.point(pointDict=dict(data[1])),
             self.point(pointDict=dict(data[2])),
             self.point(pointDict=dict(data[3])))
-        return self.response(result.to_Dict())
+        return JsonResponse(Response.SuccessData(result.to_Dict(),200),status=200)
     
     def post(self, request, format=None):
         serializer=self.pointSerializer(data=request.data,many=True)
         if serializer.is_valid():
             return self.geo(serializer.data)
         else:
-            return self.response(serializer.errors,status=self.status.HTTP_400_BAD_REQUEST)
+            return JsonResponse(Response.FailError(serializer.errors,400),status=400)

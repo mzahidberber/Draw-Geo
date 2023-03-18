@@ -1,6 +1,8 @@
-
-from geooperation_api.models.Response import Response
 from .BaseView import BaseView
+from geooperation_api.models.Response import Response
+from django.http import JsonResponse
+
+
 
 class FindTwoPointsLength(BaseView):
     '''
@@ -11,15 +13,18 @@ class FindTwoPointsLength(BaseView):
     '''
     @BaseView.validationTwoData
     def geo(self,data):
-        result= self.geometricOperation.cizgiUzunlukBul(
+        result=self.geometricOperation.cizgiUzunlukBulAsync(
             self.point(pointDict=dict(data[0])),
             self.point(pointDict=dict(data[1])))
-        return self.response(Response.SuccessData([{"length":result}],200))
+        
+        return JsonResponse(Response.SuccessData(result,200),status=200)
+    
     
     
     def post(self, request, format=None):
         serializer=self.pointSerializer(data=request.data,many=True)
+        
         if serializer.is_valid():
             return self.geo(serializer.data)
         else:
-            return self.response(serializer.errors,status=self.status.HTTP_400_BAD_REQUEST)
+            return JsonResponse(Response.FailError(serializer.errors,400),status=400)

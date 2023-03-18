@@ -1,5 +1,6 @@
 from .BaseView import BaseView
-
+from geooperation_api.models.Response import Response
+from django.http import JsonResponse
 class ConvertDegreeToSlope(BaseView):
     '''
     put degree and return to slope radians
@@ -10,11 +11,11 @@ class ConvertDegreeToSlope(BaseView):
     @BaseView.validationOneData
     def geo(self,data):
         result= self.geometricOperation.acidanEgimBulma(data["degree"])
-        return self.response({"slope":result})
+        return JsonResponse(Response.SuccessData(result,200),status=200)
     
     def post(self, request, format=None):
         serializer=self.degreeSeralizer(data=request.data)
         if serializer.is_valid():
             return self.geo(serializer.data)
         else:
-            return self.response(serializer.errors,status=self.status.HTTP_400_BAD_REQUEST)
+            return JsonResponse(Response.FailError(serializer.errors,400),status=400)

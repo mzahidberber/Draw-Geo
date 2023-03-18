@@ -1,5 +1,6 @@
 from .BaseView import BaseView
-
+from geooperation_api.models.Response import Response
+from django.http import JsonResponse
 class FindDegreeLineSlope(BaseView):
     '''
     put slope and return to degree line
@@ -10,11 +11,11 @@ class FindDegreeLineSlope(BaseView):
     @BaseView.validationOneData
     def geo(self,data):
         result= self.geometricOperation.dogruAciBulma(data["slope"])
-        return self.response({"degree":result})
+        return JsonResponse(Response.SuccessData(result,200),status=200)
     
     def post(self, request, format=None):
         serializer=self.slopeSerializer(data=request.data)
         if serializer.is_valid():
             return self.geo(serializer.data)
         else:
-            return self.response(serializer.errors,status=self.status.HTTP_400_BAD_REQUEST)
+            return JsonResponse(Response.FailError(serializer.errors,400),status=400)

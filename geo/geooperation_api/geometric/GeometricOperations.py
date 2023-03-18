@@ -1,3 +1,4 @@
+import asyncio
 import numpy as np
 import math
 from geooperation_api.models import Point
@@ -5,8 +6,10 @@ from geooperation_api.models import Point
 class GeometricOperation:
 
      @staticmethod
-     def cizgiUzunlukBul(point1:Point,point2:Point) -> float:
+     def cizgiUzunlukBulAsync(point1:Point,point2:Point) -> float:
           "İki nokta arasi cizgi uzunlugunu bulmak icin fonksiyon"
+          print(point1.X,"---",point1.Y)
+          print(point2.X,"---",point2.Y)
           toplam=((point2.X-point1.X)**2)+((point2.Y-point1.Y)**2)
           uzunluk=math.sqrt(toplam)
           return uzunluk
@@ -81,7 +84,7 @@ class GeometricOperation:
      @staticmethod
      def acidanEgimBulma(aci:float) -> float:
           "Acidan Egim bulma Radyan"
-          aciDerece=GeometricOperation.dereceyiRadyanaCevirme(aci)
+          aciDerece=GeometricOperation.dereceyiRadyanaCevirmeAsync(aci)
           egim=math.tan(aciDerece)
           return egim
 
@@ -91,7 +94,7 @@ class GeometricOperation:
           return derece
 
      @staticmethod
-     def dereceyiRadyanaCevirme(derece:float) -> float:
+     def dereceyiRadyanaCevirmeAsync(derece:float) -> float:
           radyan = derece * (math.pi / 180)
           return radyan
 
@@ -266,7 +269,7 @@ class GeometricOperation:
 
      @staticmethod
      def enyakinNoktayiBul(p:Point,pointList:list[Point]) -> Point:
-          liste=list(map(lambda x:GeometricOperation.cizgiUzunlukBul(p,x),pointList))
+          liste=list(map(lambda x:GeometricOperation.cizgiUzunlukBulAsync(p,x),pointList))
           return pointList[liste.index(min(liste))]
      
 
