@@ -273,6 +273,46 @@ class GeometricOperation:
           return pointList[liste.index(min(liste))]
      
 
+     @staticmethod
+     def baslagicBitisAcisiBul(merkez:Point,p1: Point,p2: Point,p3: Point) -> list[float,float]:
+          baslangicAci=GeometricOperation.dogruAciBul(merkez,p1)
+
+          if p1.X>merkez.X:
+               if p1.Y>merkez.Y:
+                    baslangicAci=baslangicAci
+               else:
+                    baslangicAci=baslangicAci
+          else:
+               if p1.Y>merkez.Y:
+                    baslangicAci=baslangicAci+180
+               else:
+                    baslangicAci=baslangicAci-180
+          
+          p3Aci=GeometricOperation.dogruAciBul(merkez,p3)
+          if p3.X>merkez.X:
+               if p3.Y>merkez.Y:
+                    p3Aci=p3Aci
+               else:
+                    p3Aci=p3Aci+360
+          else:
+               if p3.Y>merkez.Y:
+                    p3Aci=p3Aci+180
+               else:
+                    p3Aci=p3Aci+180
+
+          
+          konum=GeometricOperation.NoktaDogrununNeresindeBul(p1,p3,p2)
+
+          if konum=="right":
+               bitisAci=p3Aci-baslangicAci
+          elif konum=="left":
+               bitisAci=-(360-(p3Aci-baslangicAci))
+          else:
+               bitisAci=p3Aci-baslangicAci
+
+          return [baslangicAci,bitisAci]
+     
+
      
 
      
