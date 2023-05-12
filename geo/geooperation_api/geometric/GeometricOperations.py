@@ -310,7 +310,38 @@ class GeometricOperation:
           else:
                bitisAci=p3Aci-baslangicAci
 
-          return [baslangicAci,bitisAci]
+          return [-baslangicAci*16,-bitisAci*16]
+     
+
+     @staticmethod
+     def findStartAndStopAngleTwoPoint(center: Point,p1: Point,p2: Point):
+          startAngle=GeometricOperation.dogruAciBul(center,p1)
+
+          if p1.X>center.X:
+               if p1.Y>center.Y:
+                    startAngle=startAngle
+               else:
+                    startAngle=startAngle
+          else:
+               if p1.Y>center.Y:
+                    startAngle=startAngle+180
+               else:
+                    startAngle=startAngle-180
+
+          p2Aci=GeometricOperation.dogruAciBul(center,p2)
+
+          if p2.X>center.X:
+               if p2.Y>center.Y:
+                    p2Aci=p2Aci
+               else:
+                    p2Aci=p2Aci+360
+          else:
+               if p2.Y>center.Y:
+                    p2Aci=p2Aci+180
+               else:
+                    p2Aci=p2Aci+180
+
+          return [-startAngle*16,-(p2Aci-startAngle)*16]
      
 
      

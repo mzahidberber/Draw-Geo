@@ -6,7 +6,7 @@ from geooperation_api.views import FindCenterPointToLine,FindDegreeToBetweenTwoL
 from geooperation_api.views import FindDotProductToTwoPoints,FindDifferenceTwoPoints
 from geooperation_api.views import WherePointsOnLine,FindInsectionPointToTwoLines
 from geooperation_api.views import FindPointLength,WherePointZone
-from geooperation_api.views import FindNearetPoint,FindStartAndStopAngle
+from geooperation_api.views import FindNearetPoint,FindStartAndStopAngle,findStartAndStopAngleTwoPoint
 from django_ratelimit.decorators import ratelimit
 
 urlpatterns=[
@@ -29,4 +29,5 @@ urlpatterns=[
     path('wherePointZone/',WherePointZone.as_view()),
     path('findNearetPoint/',FindNearetPoint.as_view()),
     path('findStartAndStopAngle/',FindStartAndStopAngle.as_view()),
+    path('findStartAndStopAngleTwoPoint/',findStartAndStopAngleTwoPoint.as_view()),
 ]
