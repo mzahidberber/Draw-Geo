@@ -1,4 +1,4 @@
-import asyncio
+
 import numpy as np
 import math
 from geooperation_api.models import Point
@@ -311,6 +311,21 @@ class GeometricOperation:
                bitisAci=p3Aci-baslangicAci
 
           return [-baslangicAci*16,-bitisAci*16]
+
+
+     @staticmethod
+     def findPointOnCircle(center: Point, radius: float, angle: float) ->Point:
+          angleRadian = math.radians(angle)
+
+          x = center.X + radius * math.cos(angleRadian)
+          y = center.Y + radius * math.sin(angleRadian)
+
+          if center.X==0 and center.Y==0 and angle==90:x=0
+          elif center.X==0 and center.Y==0 and angle==180:y=0
+          elif center.X==0 and center.Y==0 and angle==270:x=0
+          elif center.X==0 and center.Y==0 and angle==360:y=0
+
+          return Point(x=x,y=y)
      
 
      @staticmethod

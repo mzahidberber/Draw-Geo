@@ -2,11 +2,11 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from geooperation_api.models import Point
-from geooperation_api.serializer import PointSerializer,SlopeSerializer,DegreeSerializer,PointAndListSerializer,RadiansSerializer
+from geooperation_api.serializer import PointSerializer,SlopeSerializer,PointRadiusAngleSerialier,DegreeSerializer,PointAndListSerializer,RadiansSerializer
 from geooperation_api.geometric.GeometricOperations import GeometricOperation
 from abc import ABC,abstractmethod
 # from adrf.views import APIView
-
+import logging
 
 class BaseView(APIView,ABC):
     response=Response
@@ -18,6 +18,8 @@ class BaseView(APIView,ABC):
     radianSerializer=RadiansSerializer
     geometricOperation=GeometricOperation
     pointAndListSerializer=PointAndListSerializer
+    pointRadiusAngleSerializer=PointRadiusAngleSerialier
+    logger = logging.getLogger()
 
     @abstractmethod
     def geo(self,data):pass

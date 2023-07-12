@@ -18,3 +18,4 @@ from .WherePointZone import WherePointZone
 from .FindNearetPoint import FindNearetPoint
 from .FindStartAndStopAngle import FindStartAndStopAngle
 from .findStartAndStopAngleTwoPoint import findStartAndStopAngleTwoPoint
+from .FindPointOnCircle import FindPointOnCircle

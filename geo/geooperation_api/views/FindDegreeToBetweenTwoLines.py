@@ -11,6 +11,7 @@ class FindDegreeToBetweenTwoLines(BaseView):
     @BaseView.validationTwoData
     def geo(self,data):
         result= self.geometricOperation.ikiDogruArasiAciBulma(data[0]["slope"],data[1]["slope"])
+        self.logger.info(f"Run FindDegreeToBetweenTwoLines s1:{data[0]['slope']} s1:{data[1]['slope']}")
         return JsonResponse(Response.SuccessData(result,200),status=200)
     
     def post(self, request, format=None):

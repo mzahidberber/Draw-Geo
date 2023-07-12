@@ -11,6 +11,7 @@ class ConvertDegreeToSlope(BaseView):
     @BaseView.validationOneData
     def geo(self,data):
         result= self.geometricOperation.acidanEgimBulma(data["degree"])
+        self.logger.info(f"Run ConvertDegreeToSlope degree:{data['degree']}")
         return JsonResponse(Response.SuccessData(result,200),status=200)
     
     def post(self, request, format=None):

@@ -13,6 +13,7 @@ class FindCenterPointToLine(BaseView):
         result= self.geometricOperation.cizgiOrtaNokta(
             self.point(pointDict=dict(data[0])),
             self.point(pointDict=dict(data[1])))
+        self.logger.info(f"Run FindCenterPointToLine p1:{dict(data[0])} p2:{dict(data[1])}")
         return JsonResponse(Response.SuccessData(result.to_Dict(),200),status=200)
     
     def post(self, request, format=None):

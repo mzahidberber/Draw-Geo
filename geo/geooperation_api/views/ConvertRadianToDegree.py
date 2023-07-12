@@ -11,6 +11,7 @@ class ConvertRadianToDegree(BaseView):
     @BaseView.validationOneData
     def geo(self,data):
         result= self.geometricOperation.radyaniDereceyeCevirme(data["radians"])
+        self.logger.info(f"Run ConvertRadianToDegree radians:{data['radians']}")
         return JsonResponse(Response.SuccessData(result,200),status=200)
     
     def post(self, request, format=None):

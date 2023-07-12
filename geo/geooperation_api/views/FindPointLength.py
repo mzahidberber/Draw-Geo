@@ -15,6 +15,7 @@ class FindPointLength(BaseView):
         result= self.geometricOperation.uzunluktakiNoktayiBul(
             self.point(pointDict=dict(data[0])),
             self.point(pointDict=dict(data[1])),length)
+        self.logger.info(f"Run FindPointLength p1:{dict(data[0])} p2:{dict(data[1])} length:{length}")
         return JsonResponse(Response.SuccessData(result.to_Dict(),200),status=200)
     
     # @method_decorator(ratelimit(key="ip",rate="2/s",method='POST'))

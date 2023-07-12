@@ -15,6 +15,7 @@ class FindInsectionPointToTwoLines(BaseView):
             self.point(pointDict=dict(data[1])),
             self.point(pointDict=dict(data[2])),
             self.point(pointDict=dict(data[3])))
+        self.logger.info(f"Run FindInsectionPointToTwoLines p1:{dict(data[0])} p2:{dict(data[1])} p3:{dict(data[2])} p4:{dict(data[3])}")
         return JsonResponse(Response.SuccessData(result.to_Dict(),200),status=200)
     
     def post(self, request, format=None):

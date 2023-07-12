@@ -16,7 +16,7 @@ class FindTwoPointsLength(BaseView):
         result=self.geometricOperation.cizgiUzunlukBulAsync(
             self.point(pointDict=dict(data[0])),
             self.point(pointDict=dict(data[1])))
-        
+        self.logger.info(f"Run FindTwoPointsLength p1:{dict(data[0])} p2:{dict(data[1])}")
         return JsonResponse(Response.SuccessData(result,200),status=200)
     
     

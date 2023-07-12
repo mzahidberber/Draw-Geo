@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,8 +26,48 @@ SECRET_KEY = 'django-insecure-h@&*kibx$0p-s=pa^+l=3uzfe6mpuuo9(em(f&uv9xzveazwz4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+from . import allowerdhosturls
 
+ALLOWED_HOSTS = allowerdhosturls.URL
+
+import os
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters":{
+        "console":{
+            "format":"%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+        },
+        "file":{
+            "format":"%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+        }
+    },
+    "handlers": {
+        "file":{
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "formatter":"file",
+            "filename":"log.log",
+        },
+        "console": {
+            "level": "DEBUG",
+            "class": "logging.StreamHandler",
+            "formatter":"console",
+        },
+    },
+    "root": {
+        "handlers": ["console","file"],
+        "level": "DEBUG",
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["console","file"],
+            "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),
+            "propagate": False,
+        },
+    },
+}
 
 # Application definition
 

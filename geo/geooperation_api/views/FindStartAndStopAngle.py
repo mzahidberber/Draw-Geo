@@ -18,6 +18,7 @@ class FindStartAndStopAngle(BaseView):
             self.point(pointDict=dict(data[2])),
             self.point(pointDict=dict(data[3])),
             )
+        self.logger.info(f"Run FindStartAndStopAngle p1:{dict(data[0])} p2:{dict(data[1])} p3:{dict(data[2])} p4:{dict(data[3])}")
         return JsonResponse(Response.SuccessData({"startAngle":result[0],"stopAngle":result[1]},200),status=200)
     
     # @method_decorator(ratelimit(key="ip",rate="2/s",method='POST'))

@@ -13,6 +13,7 @@ class FindNearetPoint(BaseView):
         result= self.geometricOperation.enyakinNoktayiBul(
             self.point(pointDict=dict(data["point"])),
             list(map(lambda x :self.point(pointDict=dict(x)),data["points"])))
+        self.logger.info(f"Run FindNearetPoint point:{dict(data['point'])} points:{data['points']}")
         return JsonResponse(Response.SuccessData(result.to_Dict(),200),status=200)
     
     def post(self, request, format=None):

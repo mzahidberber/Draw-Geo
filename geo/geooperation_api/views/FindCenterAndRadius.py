@@ -14,6 +14,7 @@ class FindCenterAndRadius(BaseView):
             self.point(pointDict=dict(data[0])),
             self.point(pointDict=dict(data[1])),
             self.point(pointDict=dict(data[2])))
+        self.logger.info(f"Run FindCenterAndRadius p1:{dict(data[0])} p2:{dict(data[1])} p3:{dict(data[2])}")
         return JsonResponse(Response.SuccessData({"radius":result[1],"centerPoint":result[0].to_Dict()},200),status=200)
     
     def post(self, request, format=None):
