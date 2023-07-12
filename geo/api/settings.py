@@ -26,9 +26,8 @@ SECRET_KEY = 'django-insecure-h@&*kibx$0p-s=pa^+l=3uzfe6mpuuo9(em(f&uv9xzveazwz4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-from . import allowerdhosturls
 
-ALLOWED_HOSTS = allowerdhosturls.URL
+ALLOWED_HOSTS = ["localhost","127.0.0.1","drawgeo"]
 
 import os
 
