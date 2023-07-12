@@ -8,4 +8,8 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
+ENV ALLOWED_HOSTS=$ALLOWED_HOSTS
+ENV SECRET_KEY=$SECRET_KEY
+ENV DEBUG=$DEBUG
+
 WORKDIR /geo

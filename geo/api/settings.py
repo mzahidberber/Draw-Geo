@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+
+# .env dosyasını yükleyin
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,15 +25,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-h@&*kibx$0p-s=pa^+l=3uzfe6mpuuo9(em(f&uv9xzveazwz4'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
 
+allowedHosts=["localhost","127.0.0.1"]
+allowedHostEnv=os.environ.get('ALLOWED_HOSTS', '').split(',')
+if not '' in allowedHostEnv:allowedHosts.extend(allowedHostEnv)
 
-ALLOWED_HOSTS = ["localhost","127.0.0.1","drawgeo"]
+ALLOWED_HOSTS = allowedHosts
 
-import os
 
 LOGGING = {
     "version": 1,
