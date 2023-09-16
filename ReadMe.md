@@ -11,23 +11,23 @@
 <hr>
 
 <p>
-Geo hizmeti python ile geometrik hesaplamalar yapabilmek için tasarlanmış django api projesidir. Hizmette herhangi bir kayıt işlemi yapılmamaktadır.Sadece gönderilen isteğe göre hesaplamaları yapar ve geriye sonucu döner.Hizmeti kullanmak için token bilgisine gerek yoktur.Hizmeti ile yapabileceğiniz sorgular için <a href="https://docs.drawprogram.org/doc">doc</a> adresini ziyaret edebilirsiniz.
+Geo service is a Django API project designed to perform geometric calculations with Python. There is no registration process in the service. It just makes calculations according to the request sent and returns the result. There is no need for token information to use the service. You can visit the <a href="https://docs.drawprogram.org/doc">doc</a> address for the queries you can make with the service.
 </p>
-<h3>Başlangıç</h3>
-<p>Kullanmak için dockerhubtan imageyi indirebilir</p>
+<h3>Quick Start</h3>
+<p>You can download the image from dockerhub to use it.</p>
 
 ```
 docker pull mzahidberber/drawgeo:latest
 ```
 
-<p>veya kaynak kodu indirip kendiniz image oluşturabilirsiniz</p>
+<p>Or you can download the source code and create the image yourself.</p>
 
 ```
 docker build -t drawgeo .
 ```
 
 <p>
-Docker run ile çalıştırabilirsiniz.Environmentlerden allowed hosts ve debug zorunlu değildir.Allowed hosts environmentini göndermesenizde localde çalışacaktır.Debug ise varsayılan olarak false dir.
+You can run it with Docker run. Allowed hosts and debug are not mandatory in environments. Even if you do not send the allowed hosts environment, it will run locally. Debug is false by default.
 </p>
 
 ```
