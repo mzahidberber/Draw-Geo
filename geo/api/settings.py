@@ -30,11 +30,11 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
 
-allowedHosts=["localhost","127.0.0.1"]
-allowedHostEnv=os.environ.get('ALLOWED_HOSTS', '').split(',')
-if not '' in allowedHostEnv:allowedHosts.extend(allowedHostEnv)
+corsAllowedOrigins=["localhost","127.0.0.1"]
+corsEnv=os.environ.get('ALLOWED_HOSTS', '').split(',')
+if not '' in corsEnv:corsAllowedOrigins.extend(corsEnv)
 
-ALLOWED_HOSTS = allowedHosts
+ALLOWED_HOSTS = corsAllowedOrigins
 
 
 LOGGING = {
@@ -85,6 +85,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'geooperation_api',
     'rest_framework',
+    'corsheaders',
     #'adrf',
 ]
 
@@ -96,7 +97,17 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
+
+corsAllowedOrigins=[]
+corsEnv=os.environ.get('cors', '').split(';')
+if not '' in corsEnv:corsAllowedOrigins.extend(corsEnv)
+if "*" in corsAllowedOrigins:
+    CORS_ALLOW_ALL_ORIGINS = True
+else:
+    CORS_ALLOWED_ORIGINS = corsAllowedOrigins
 
 ROOT_URLCONF = 'api.urls'
 
